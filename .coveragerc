@@ -1,2 +1,4 @@
 [run]
-source = uw_attest/
+branch = True
+source = uw_attest
+include = uw_attest/*

@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 """
-This is the interface for interacting with the Notifications Web Service.
+This is the interface for interacting with the Attesttation Web Service.
 """
 import json
 import logging

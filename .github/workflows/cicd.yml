@@ -27,9 +27,9 @@ env:
 
 on:
   push:
-    branches: [main, develop]
+    branches: [main, qa, develop]
   pull_request:
-    branches: [main, develop]
+    branches: [main, qa, develop]
     types: [opened, reopened, synchronize]
   release:
     branches: [main]

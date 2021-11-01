@@ -23,7 +23,7 @@
 name: tests
 
 env:
-  APP_NAME: uw_attest
+  APP_NAME: uw_space
 
 on:
   push:

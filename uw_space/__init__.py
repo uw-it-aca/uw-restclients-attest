@@ -7,27 +7,27 @@ This is the interface for interacting with the Attesttation Web Service.
 import json
 import logging
 from restclients_core.exceptions import DataFailureException
-from uw_attest.dao import ATTEST_DAO
-from uw_attest.models import Covid19Attestation
+from uw_space.dao import SPACE_DAO
+from uw_space.models import Facility
 
-covid_api = "/attestations/v1/covid19/{}"
+facility_api = "facility?facility_code={}"
 logger = logging.getLogger(__name__)
 
 
-class Attest(object):
+class Facility(object):
 
     def __init__(self):
-        self.dao = ATTEST_DAO()
+        self.dao = SPACE_DAO()
         self._read_headers = {"Accept": "application/json"}
 
-    def get_covid19_vaccination(self, regid):
+    def search(self, facility_code):
         """
-        Get covid19 vaccination by regid
+        facility_code: string
         """
-        url = covid_api.format(regid)
+        url = facility_api.format(facility_code)
         response = self.dao.getURL(url, self._read_headers)
         logger.debug(
             {'url': url, 'status': response.status, 'data': response.data})
         if response.status != 200:
             raise DataFailureException(url, response.status, response.data)
-        return Covid19Attestation.from_json(json.loads(response.data))
+        return Facility.from_json(json.loads(response.data))

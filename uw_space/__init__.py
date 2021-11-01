@@ -10,7 +10,7 @@ from restclients_core.exceptions import DataFailureException
 from uw_space.dao import SPACE_DAO
 from uw_space.models import Facility
 
-facility_api = "facility?facility_code={}"
+facility_api = "/space/v1/facility?facility_code={}"
 logger = logging.getLogger(__name__)
 
 

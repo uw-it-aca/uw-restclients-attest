@@ -2,9 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from restclients_core.dao import DAO
-from restclients_core.exceptions import DataFailureException
 from os.path import abspath, dirname
-import json
 import os
 
 

@@ -3,12 +3,13 @@
 
 import json
 from restclients_core import models
-
+from uw_space.utils import date_to_str
 
 class Facility(models.Model):
     facility_code = models.CharField(max_length=32)
     facility_number = models.CharField(max_length=32)
     href = models.CharField(max_length=255)
+    last_updated = models.DateTimeField()
     latitude = models.CharField(max_length=64)
     longitude = models.CharField(max_length=64)
     name = models.CharField(max_length=128)
@@ -21,6 +22,7 @@ class Facility(models.Model):
         return {
             "facility_code": self.facility_code,
             "facility_number": self.facility_number,
+            "last_updated": date_to_str(self.last_updated),
             "latitude": self.latitude,
             "longitude": self.longitude,
             "name": self.name,

@@ -9,8 +9,10 @@ import logging
 from restclients_core.exceptions import DataFailureException
 from uw_space.dao import SPACE_DAO
 from uw_space.models import Facility
+from uw_space.utils import str_to_datetime
 
-facility_api = "/space/v1/facility.json?facility_code={}"
+by_code_path = "/space/v1/facility.json?facility_code={}"
+by_number_path = "/space/v1/facility/{}.json"
 logger = logging.getLogger(__name__)
 
 
@@ -20,37 +22,56 @@ class Facility(object):
         self.dao = SPACE_DAO()
         self._read_headers = {"Accept": "application/json"}
 
-    def search(self, facility_code):
+    def search_by_code(self, facility_code):
         """
         facility_code: string
         """
-        url = facility_api.format(facility_code)
+        url = by_code_path.format(facility_code)
         response = self.dao.getURL(url, self._read_headers)
         logger.debug(
             {'url': url, 'status': response.status, 'data': response.data})
         if response.status != 200:
             raise DataFailureException(url, response.status, response.data)
-        return __process_json(json.loads(response.data))
+        return self.__process_json(json.loads(response.data))
 
-    def __process_json(jdata):
+    def search_by_number(self, facility_number):
+        """
+        facility_number: string
+        """
+        url = by_number_path.format(facility_number)
+        response = self.dao.getURL(url, self._read_headers)
+        logger.debug(
+            {'url': url, 'status': response.status, 'data': response.data})
+        if response.status != 200:
+            raise DataFailureException(url, response.status, response.data)
+        return self.__process_map_json(json.loads(response.data))
+
+    def __process_json(self, jdata):
+        objs = []
         facilitys = json_data.get("Facilitys")
         for facility in facilitys:
-            obj = Facility()
-            obj.facility_code = facility.get("FacilityCode")
-            obj.facility_number = facility.get("AggregateFacilityNumber")
             furi = facility.get("FacilityURI")
             if furi:
-                obj.href = furi.get("Href")
-                building_resp = self.dao.getURL(obj.href, self._read_headers)
+                url = furi.get("Href")
+                building_resp = self.dao.getURL(url, self._read_headers)
                 if building_resp.status != 200:
-                    raise DataFailureException(url, building_resp.status, building_resp.data)
+                    raise DataFailureException(
+                        url, building_resp.status, building_resp.data)
+                obj = self.__process_map_json(json.loads(building_resp.data))
+                objs.append(obj)
+        return objs
 
-                bd_json = json.loads(building_resp.data)
-                obj.name = bd_json.get("LongName")
-                cpoint = bd_json.get("CenterPoint")
-                if cpoint:
-                    obj.latitude = cpoint.get("Latitude")
-                    obj.longitude = cpoint.get("Longitude")
-                site_json = bd_json.get("Site")
-                if site_json:
-                    obj.site = site_json.get("Description")
+    def __process_map_json(self, jdata):
+        obj = Facility()
+        obj.facility_code = jdata.get("FacilityCode")
+        obj.facility_number = jdata.get("AggregateFacilityNumber")
+        obj.name = jdata.get("LongName")
+        cpoint = jdata.get("CenterPoint")
+        if cpoint:
+            obj.latitude = cpoint.get("Latitude")
+            obj.longitude = cpoint.get("Longitude")
+        site_json = jdata.get("Site")
+        if site_json:
+            obj.site = site_json.get("Description")
+        obj.last_updated = str_to_datetime(jdata.get("ModifiedDate"))
+        return obj

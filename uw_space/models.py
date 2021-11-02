@@ -8,7 +8,6 @@ from uw_space.utils import date_to_str
 class Facility(models.Model):
     facility_code = models.CharField(max_length=32)
     facility_number = models.CharField(max_length=32)
-    href = models.CharField(max_length=255)
     last_updated = models.DateTimeField()
     latitude = models.CharField(max_length=64)
     longitude = models.CharField(max_length=64)

@@ -6,34 +6,25 @@ from restclients_core import models
 
 
 class Facility(models.Model):
-    description = models.CharField(max_length=255)
     facility_code = models.CharField(max_length=32)
     facility_number = models.CharField(max_length=32)
     href = models.CharField(max_length=255)
+    latitude = models.CharField(max_length=64)
+    longitude = models.CharField(max_length=64)
     name = models.CharField(max_length=128)
+    site = models.CharField(max_length=96)
 
     def __init__(self, *args, **kwargs):
         super(Facility, self).__init__(*args, **kwargs)
 
-    @staticmethod
-    def from_json(json_data):
-        obj = Facility()
-        facilitys = json_data.get("facilitys")
-        for facility in facilitys:
-            obj.facility_code = facility.get("facilityCode")
-            obj.facility_number = facility.get("facilityNumber")
-            uri = facility.get("facilityURI")
-            obj.description = uri.get("description")
-            obj.href = uri.get("href")
-        return obj
-
     def json_data(self):
         return {
-            "description": self.description,
             "facility_code": self.facility_code,
             "facility_number": self.facility_number,
-            "href": self.href,
-            "name": self.name
+            "latitude": self.latitude,
+            "longitude": self.longitude,
+            "name": self.name,
+            "site": self.site,
         }
 
     def __str__(self):

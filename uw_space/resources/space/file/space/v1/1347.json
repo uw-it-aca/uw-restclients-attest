@@ -1,0 +1,45 @@
+{
+  "Addresses": [
+    {
+      "Code": null,
+      "PrimaryAddress": "Y",
+      "StreetAddress": null,
+      "City": null,
+      "State": null,
+      "PostalCode": null,
+      "Country": null,
+      "CountryCode2": null,
+      "CountryCode3": null,
+      "County": null,
+      "CenterPoint": {
+        "Latitude": "0.0",
+        "Longitude": "0.0"
+      }
+    }
+  ],
+  "AggregateFacilityNumber": "1347",
+  "ConstructionType": "M/W",
+  "FacilityCode": "MEB",
+  "FacilityNumber": "1347",
+  "FacilityType": {
+    "Code": "BLDG",
+    "Description": "Building"
+  },
+  "GrossSquareFeet": "97768",
+  "IsRegisteredHistoricSite": "N",
+  "LeasedOrOwned": "OWNED",
+  "LongName": "Mechanical Engineering Building",
+  "ModifiedDate": "3/27/2021 4:53:09 AM",
+  "Name": "Mechanical Engr Bldg",
+  "Site": {
+    "Code": "SEA_MN",
+    "Description": "Seattle Main Campus"
+  },
+  "RoomCount": 252,
+  "Status": "A",
+  "OFMCountyCode": "17",
+  "CenterPoint": {
+    "Latitude": "47.653693",
+    "Longitude": "-122.304747"
+  }
+}

@@ -23,13 +23,13 @@
 name: tests
 
 env:
-  APP_NAME: uw_attest
+  APP_NAME: uw_space
 
 on:
   push:
-    branches: [main, develop]
+    branches: [main, qa]
   pull_request:
-    branches: [main, develop]
+    branches: [main, qa]
     types: [opened, reopened, synchronize]
   release:
     branches: [main]

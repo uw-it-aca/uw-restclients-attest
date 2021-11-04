@@ -1,2 +1,2 @@
-include uw_attest/VERSION
-recursive-include uw_attest *
+include uw_space/VERSION
+recursive-include uw_space *

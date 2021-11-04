@@ -4,10 +4,8 @@
 from dateutil.parser import parse
 from commonconf import override_settings
 
-fdao_attest_override = override_settings(
-    RESTCLIENTS_ATTEST_DAO_CLASS='Mock')
-fdao_attest_auth_override = override_settings(
-    RESTCLIENTS_ATTEST_AUTH_DAO_CLASS='Mock')
+fdao_space_override = override_settings(
+    RESTCLIENTS_SPACE_DAO_CLASS='Mock')
 
 
 def str_to_datetime(s):

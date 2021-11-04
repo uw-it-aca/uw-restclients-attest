@@ -8,7 +8,7 @@ fdao_space_override = override_settings(
     RESTCLIENTS_SPACE_DAO_CLASS='Mock')
 
 
-def str_to_utc_datetime(s):
+def str_to_datetime(s):
     return parse(s) if (s is not None and len(s)) else None
 
 

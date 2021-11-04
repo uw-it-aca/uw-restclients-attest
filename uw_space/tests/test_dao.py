@@ -10,7 +10,11 @@ from uw_space.utils import fdao_space_override
 
 
 @fdao_space_override
-class TestSpace(TestCase):
+class TestSpaceDao(TestCase):
 
-    def test_auth_header(self, mock_get_auth_token):
-        headers = SPACE_DAO()._custom_headers("GET", "/", {}, "")
+    def test_dao(self):
+        dao = SPACE_DAO()
+        self.assertEqual(dao.service_name(), "space")
+        self.assertTrue(
+            dao.service_mock_paths()[0].endswith(
+                "uw-restclients-space/uw_space/resources"))

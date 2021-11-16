@@ -16,7 +16,9 @@ class Facilities(object):
 
     def __init__(self):
         self.dao = SPACE_DAO()
-        self._read_headers = {"Accept": "application/json"}
+        self._read_headers = {
+            'Accept': 'application/json',
+            'Connection': 'keep-alive'}
 
     def search_by_code(self, facility_code):
         """
@@ -46,13 +48,9 @@ class Facilities(object):
         objs = []
         facilitys = json_data.get("Facilitys")
         for facility in facilitys:
-            furi = facility.get("FacilityURI")
-            if furi:
-                url = furi.get("Href")
-                building_resp = self.dao.getURL(url, self._read_headers)
-                if building_resp.status != 200:
-                    raise DataFailureException(
-                        url, building_resp.status, building_resp.data)
-                objs.append(
-                    Facility.from_json(json.loads(building_resp.data)))
+            fnumber = facility.get("FacilityNumber")
+            if fnumber and len(fnumber):
+                fac = self.search_by_number(fnumber)
+                if fac:
+                    objs.append(fac)
         return objs

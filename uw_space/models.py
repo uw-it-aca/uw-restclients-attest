@@ -1,4 +1,4 @@
-# Copyright 2021 UW-IT, University of Washington
+# Copyright 2022 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
 import json
@@ -22,23 +22,14 @@ class Facility(models.Model):
     @staticmethod
     def from_json(json_data):
         obj = Facility()
-        obj.code = json_data.get("FacilityCode")
-        obj.number = json_data.get("FacilityNumber")
-        obj.last_updated = str_to_datetime(json_data.get("ModifiedDate"))
-        obj.name = json_data.get("LongName")
-
-        cpoint = json_data.get("CenterPoint")
-        if cpoint:
-            obj.latitude = cpoint.get("Latitude")
-            obj.longitude = cpoint.get("Longitude")
-        site_json = json_data.get("Site")
-
-        if site_json:
-            obj.site = site_json.get("Description")
-
-        ftype = json_data.get("FacilityType")
-        if ftype:
-            obj.type = ftype.get("Description")
+        obj.code = json_data.get("facilityCode")
+        obj.number = json_data.get("facilityNumber")
+        obj.last_updated = str_to_datetime(json_data.get("modifiedDate"))
+        obj.name = json_data.get("longName")
+        obj.latitude = json_data.get("mapUri", {}).get("latitude")
+        obj.longitude = json_data.get("mapUri", {}).get("longitude")
+        obj.site = json_data.get("site", {}).get("description")
+        obj.type = json_data.get("facilityType", {}).get("description")
         return obj
 
     def json_data(self):

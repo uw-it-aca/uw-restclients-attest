@@ -1,4 +1,4 @@
-# Copyright 2021 UW-IT, University of Washington
+# Copyright 2022 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
 import json
@@ -7,8 +7,8 @@ from restclients_core.exceptions import DataFailureException
 from uw_space.dao import SPACE_DAO
 from uw_space.models import Facility
 
-by_code_path = "/space/v1/facility.json?facility_code={}"
-by_number_path = "/space/v1/facility/{}.json"
+by_code_path = "/space/v2/facility.json?facility_code={}"
+by_number_path = "/space/v2/facility/{}.json"
 logger = logging.getLogger(__name__)
 
 
@@ -46,9 +46,9 @@ class Facilities(object):
 
     def __process_json(self, json_data):
         objs = []
-        facilitys = json_data.get("Facilitys")
+        facilitys = json_data.get("facilitys")
         for facility in facilitys:
-            fnumber = facility.get("FacilityNumber")
+            fnumber = facility.get("facilityNumber")
             if fnumber and len(fnumber):
                 fac = self.search_by_number(fnumber)
                 if fac:

@@ -1,5 +1,6 @@
-# Copyright 2021 UW-IT, University of Washington
+# Copyright 2022 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
+
 
 import json
 import logging
@@ -7,8 +8,8 @@ from restclients_core.exceptions import DataFailureException
 from uw_space.dao import SPACE_DAO
 from uw_space.models import Facility
 
-by_code_path = "/space/v1/facility.json?facility_code={}"
-by_number_path = "/space/v1/facility/{}.json"
+by_code_path = "/space/v2/facility.json?facility_code={}"
+by_number_path = "/space/v2/facility/{}.json"
 logger = logging.getLogger(__name__)
 
 

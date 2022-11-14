@@ -1,5 +1,6 @@
-# Copyright 2021 UW-IT, University of Washington
+# Copyright 2022 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
+
 
 from unittest import TestCase
 from restclients_core.exceptions import DataFailureException
@@ -8,9 +9,9 @@ from uw_space.utils import fdao_space_override
 
 data = {
     'code': 'MEB',
-    'last_updated': '2021-03-27 04:53:09',
-    'latitude': '47.653693',
-    'longitude': '-122.304747',
+    'last_updated': '2022-09-22 19:41:34',
+    'latitude': 47.6536929997,
+    'longitude': -122.304747,
     'name': 'Mechanical Engineering Building',
     'number': '1347',
     'site': 'Seattle Main Campus',

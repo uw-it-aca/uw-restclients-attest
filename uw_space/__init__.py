@@ -49,9 +49,11 @@ class Facilities(object):
         objs = []
         facilitys = json_data.get("Facilitys")
         for facility in facilitys:
+            status = facility.get("Status")
             fnumber = facility.get("FacilityNumber")
             if fnumber and len(fnumber):
                 fac = self.search_by_number(fnumber)
                 if fac:
+                    fac.status = status
                     objs.append(fac)
         return objs

@@ -24,6 +24,7 @@ class TestSpace(TestCase):
     def test_search_by_code(self):
         fac = Facilities().search_by_code("MEB")
         self.assertEqual(len(fac), 1)
+        data['status'] = 'A'
         self.assertEqual(fac[0].json_data(), data)
 
         self.assertRaises(
@@ -33,6 +34,7 @@ class TestSpace(TestCase):
 
     def test_search_by_number(self):
         fac = Facilities().search_by_number("1347")
+        data['status'] = ''
         self.assertEqual(fac.json_data(), data)
 
         self.assertRaises(

@@ -1,4 +1,4 @@
-# Copyright 2022 UW-IT, University of Washington
+# Copyright 2023 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
 
@@ -49,9 +49,11 @@ class Facilities(object):
         objs = []
         facilitys = json_data.get("Facilitys")
         for facility in facilitys:
+            status = facility.get("Status")
             fnumber = facility.get("FacilityNumber")
             if fnumber and len(fnumber):
                 fac = self.search_by_number(fnumber)
                 if fac:
+                    fac.status = status
                     objs.append(fac)
         return objs

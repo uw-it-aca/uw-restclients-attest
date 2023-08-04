@@ -1,4 +1,4 @@
-# Copyright 2022 UW-IT, University of Washington
+# Copyright 2023 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
 
@@ -16,6 +16,7 @@ class Facility(models.Model):
     number = models.CharField(max_length=16)
     type = models.CharField(max_length=32)
     site = models.CharField(max_length=96)
+    status = models.CharField(max_length=64)
 
     def __init__(self, *args, **kwargs):
         super(Facility, self).__init__(*args, **kwargs)
@@ -27,7 +28,6 @@ class Facility(models.Model):
         obj.number = json_data.get("FacilityNumber")
         obj.last_updated = str_to_datetime(json_data.get("ModifiedDate"))
         obj.name = json_data.get("LongName")
-
         cpoint = json_data.get("CenterPoint")
         if cpoint:
             obj.latitude = cpoint.get("Latitude")
@@ -51,6 +51,7 @@ class Facility(models.Model):
             "name": self.name,
             "number": self.number,
             "site": self.site,
+            "status": self.status,
             "type": self.type,
         }
 

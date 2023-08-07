@@ -1,6 +1,6 @@
 {
   "TotalCount": 1,
-  "Facilitys": [{
+  "Facilities": [{
     "FacilityCode": "MEB",
     "FacilityType": {
       "Code": "BLDG",

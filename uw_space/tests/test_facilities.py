@@ -34,17 +34,16 @@ class TestSpace(TestCase):
 
         fac = Facilities().search_by_code("MDR")
         self.assertEqual(len(fac), 1)
-        self.assertEqual(fac[0].json_data(),
-            {
-                'code': 'MDR',
-                'last_updated': '2022-09-22 12:49:38',
-                'latitude': 47.6601320001,
-                'longitude': -122.305391,
-                'name': 'Madrona Hall',
-                'number': '6471',
-                'site': 'Seattle Main Campus',
-                'status': 'A',
-                'type': 'Building'
+        self.assertEqual(fac[0].json_data(), {
+            'code': 'MDR',
+            'last_updated': '2022-09-22 12:49:38',
+            'latitude': 47.6601320001,
+            'longitude': -122.305391,
+            'name': 'Madrona Hall',
+            'number': '6471',
+            'site': 'Seattle Main Campus',
+            'status': 'A',
+            'type': 'Building'
             })
 
     def test_search_by_number(self):

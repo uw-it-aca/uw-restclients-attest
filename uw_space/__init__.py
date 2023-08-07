@@ -47,13 +47,17 @@ class Facilities(object):
 
     def __process_json(self, json_data):
         objs = []
-        facilitys = json_data.get("Facilitys")
-        for facility in facilitys:
-            status = facility.get("Status")
-            fnumber = facility.get("FacilityNumber")
-            if fnumber and len(fnumber):
-                fac = self.search_by_number(fnumber)
-                if fac:
-                    fac.status = status
-                    objs.append(fac)
+        if "Facilities" in json_data:
+            facilities = json_data.get("Facilities")
+        elif "Facilitys" in json_data:
+            facilities = json_data.get("Facilitys")
+        if facilities:
+            for facility in facilities:
+                status = facility.get("Status")
+                fnumber = facility.get("FacilityNumber")
+                if fnumber and len(fnumber):
+                    fac = self.search_by_number(fnumber)
+                    if fac:
+                        fac.status = status
+                        objs.append(fac)
         return objs

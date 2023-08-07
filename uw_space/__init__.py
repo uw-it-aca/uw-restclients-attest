@@ -47,10 +47,7 @@ class Facilities(object):
 
     def __process_json(self, json_data):
         objs = []
-        if "Facilities" in json_data:
-            facilities = json_data.get("Facilities")
-        elif "Facilitys" in json_data:
-            facilities = json_data.get("Facilitys")
+        facilities = json_data.get("Facilitys", json_data.get("Facilities"))
         if facilities:
             for facility in facilities:
                 status = facility.get("Status")

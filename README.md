@@ -4,7 +4,7 @@ Restclient for Attestations Service
 [![Build Status](https://github.com/uw-it-aca/uw-restclients-space/workflows/tests/badge.svg?branch=main)](https://github.com/uw-it-aca/uw-restclients-space/actions)
 [![Coverage Status](https://coveralls.io/repos/github/uw-it-aca/uw-restclients-space/badge.svg?branch=main)](https://coveralls.io/github/uw-it-aca/uw-restclients-space?branch=main)
 [![PyPi Version](https://img.shields.io/pypi/v/uw-restclients-space.svg)](https://pypi.python.org/pypi/uw-restclients-space)
-![Python versions](https://img.shields.io/pypi/pyversions/uw-restclients-space.svg)
+![Python versions](https://img.shields.io/badge/python-3.10-blue.svg)
 
 Installation:
 
